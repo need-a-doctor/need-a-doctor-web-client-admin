@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -6,7 +6,15 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, $rootScope) {
+    $rootScope.$on('$stateChangeStart',
+      function (event, toState) {
+        if (toState.name == 'login') {
+          $('body').addClass('login-body');
+        } else {
+          $('body').removeClass('login-body');
+        }
+      });
 
     $log.debug('runBlock end');
   }
