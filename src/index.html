@@ -36,6 +36,21 @@
 <!-- endbower -->
 <!-- endbuild -->
 
+<!--load config : begin-->
+<script>
+  $.ajax({
+    url: 'config.json',
+    async: false,
+    dataType: 'json',
+    success: function (response) {
+      config = response;
+    },
+    error: function () {
+      config = {};
+    }
+  });
+</script>
+
 <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
 <!-- inject:js -->
 <!-- js files will be automatically insert here -->

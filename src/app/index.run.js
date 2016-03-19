@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log, $rootScope) {
+  function runBlock($log, $rootScope, $cookieStore, Restangular) {
     $rootScope.$on('$stateChangeSuccess',
       function (event, toState) {
         if (toState.name == 'login') {
@@ -15,6 +15,11 @@
           $('body').removeClass('login-body');
         }
       });
+
+    
+    var headers = Restangular.defaultHeaders;
+    headers.Authorization = 'Bearer ' + $cookieStore.get('token');
+    Restangular.setDefaultHeaders(headers);
 
     $log.debug('runBlock end');
   }

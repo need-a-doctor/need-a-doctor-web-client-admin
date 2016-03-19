@@ -28,10 +28,9 @@
     activate();
 
     function activate() {
-      // (function ($) {
-        // $('body').css('backgroundImage', '../assets/images/login-bg.png');
-        // $('body').css('  backgroundSize', 'cover');
-      // }(jQuery));
+      if (config.env == 'test') {
+        vm.user = {email: 'test.admin@mail.ru', password: 'password'};
+      }
     }
 
   }

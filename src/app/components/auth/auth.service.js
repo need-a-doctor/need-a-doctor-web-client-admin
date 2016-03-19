@@ -20,7 +20,7 @@ angular.module('nadWeb')
             User.get().then(function (user) {
               currentUser = user;
               deferred.resolve(currentUser);
-            }).catch(function () {
+            }, function () {
               deferred.reject();
               $state.go('home');
             });

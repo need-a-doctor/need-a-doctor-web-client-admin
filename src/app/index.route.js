@@ -14,15 +14,13 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-          auth: function (Auth, $state, $q,$timeout) {
+          userCheck: function (User, $state, $q) {
             var defered = $q.defer();
-            $timeout(function () {
-              if (Auth.isLoggedIn()) {
-                defered.resolve(true);
-              } else {
-                defered.reject();
-                $state.go('login');
-              }
+            User.get().then(function (res) {
+              defered.resolve(res);
+            }, function (err) {
+              $state.go('login');
+              defered.reject(err);
             });
             return defered.promise;
           }

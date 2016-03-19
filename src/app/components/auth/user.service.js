@@ -5,13 +5,17 @@ angular.module('nadWeb')
     return {
       get: function () {
         var deferred = $q.defer();
-        Restangular.all('/users/me/').get('').then(function (res) {
-          var user = res.data;
-          $rootScope.user = user;
-          deferred.resolve(user);
-        }).catch(function (err) {
-          deferred.reject(err);
-        });
+        Restangular.all('/users/me/').get('')
+          .then(function (res) {
+            var user = angular.copy(res);
+            if (config.env == 'test') {
+              user.avatar = 'user-example.jpg';
+            }
+            $rootScope.user = user;
+            deferred.resolve(user);
+          }, function (err) {
+            deferred.reject(err);
+          });
         return deferred.promise;
       }
     };
