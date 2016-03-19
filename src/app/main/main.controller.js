@@ -18,7 +18,7 @@
     function logout() {
       Auth.logout();
     };
-  
+
     function activate() {
       $('#qqqq').click(function () {
         logout();
@@ -26,6 +26,8 @@
       $('.sidebar-toggle').click(function () {
         toggleSidebar();
       })
+
+      $(window).resize();
     }
 
   }

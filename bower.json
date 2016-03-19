@@ -23,6 +23,7 @@
       "main": [
         "bootstrap/js/bootstrap.min.js",
         "dist/css/AdminLTE.css",
+        "dist/css/skins/_all-skins.min.css",
         "dist/js/app.js"
       ]
     },
