@@ -3,7 +3,7 @@
 angular.module('nadWeb')
   .factory('User', function Auth($http, $q, Restangular, $rootScope) {
     return {
-      get: function () {
+      load: function () {
         var deferred = $q.defer();
         Restangular.all('/users/me/').get('')
           .then(function (res) {

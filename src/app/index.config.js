@@ -8,9 +8,7 @@
       return {
         'responseError': function (rejection) {
           if (rejection.status == 401) {
-            var Auth = $injector.get('Auth');
-            Auth.logout();
-            return $q.reject(rejection);
+            $injector.get('Auth').logout();
           }
           return $q.reject(rejection);
         }

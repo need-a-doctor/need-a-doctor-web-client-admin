@@ -17,7 +17,7 @@ angular.module('nadWeb')
             var headers = Restangular.defaultHeaders;
             headers.Authorization = 'Bearer ' + data.token;
             Restangular.setDefaultHeaders(headers);
-            User.get().then(function (user) {
+            User.load().then(function (user) {
               currentUser = user;
               deferred.resolve(currentUser);
             }, function () {
