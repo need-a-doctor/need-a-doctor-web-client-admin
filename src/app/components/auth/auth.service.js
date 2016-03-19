@@ -1,28 +1,27 @@
 'use strict';
 
 angular.module('nadWeb')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $timeout, $state) {
+  .factory('Auth', function Auth($location, $rootScope, Restangular, User, $cookieStore, $q, $timeout, $state) {
     var currentUser = {};
 
     return {
       login: function (user) {
         var deferred = $q.defer();
 
-        $http.post('/api/auth/', {
-            user_name: user.user_name,
-            password: user.password
+        Restangular.all('auth/local').post({
+            'email': user.email,
+            'password': user.password
           })
-          .success(function (data) {
+          .then(function (data) {
             $cookieStore.put('token', data.token);
             User.get().then(function (user) {
               currentUser = user;
               deferred.resolve(currentUser);
             }).catch(function () {
               deferred.reject();
-              $state.go('root.login');
+              $state.go('home');
             });
-          })
-          .error(function (err) {
+          }, function (err) {
             this.logout();
             deferred.reject(err);
           }.bind(this));
@@ -34,14 +33,14 @@ angular.module('nadWeb')
         $cookieStore.remove('token');
         currentUser = {};
         $location.path('/login');
-      }//,
-
+      },
+      //
       // getCurrentUser: function () {
       //   return currentUser;
       // },
-      // isLoggedIn: function () {
-      //   return currentUser.hasOwnProperty('role');
-      // },
+      isLoggedIn: function () {
+        return $cookieStore.get('token') !== undefined;
+      },
       //
       //
       // reloadUser: function () {

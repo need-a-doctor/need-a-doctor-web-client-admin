@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -6,18 +6,23 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController() {
+  function MainController(Auth) {
     var vm = this;
-
-    vm.creationDate = 1458069351477;
 
     activate();
 
-    function toggleSidebar(){
-          $('.sidebar-mini').toggleClass('sidebar-collapse');
-          }
+    function toggleSidebar() {
+      $('.sidebar-mini').toggleClass('sidebar-collapse');
+    }
 
+    function logout() {
+      Auth.logout();
+    };
+  
     function activate() {
+      $('#qqqq').click(function () {
+        logout();
+      });
       $('.sidebar-toggle').click(function () {
         toggleSidebar();
       })

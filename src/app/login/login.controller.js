@@ -10,22 +10,19 @@
     var vm = this;
     vm.user = {};
 
-    vm.login = function (form) {
-      vm.form.user_name.$dirty = true;
-      vm.form.password.$dirty = true;
-      vm.errors = null;
+    vm.login = function (/*form*/) {
+      // vm.form.email.$dirty = true;
+      // vm.form.password.$dirty = true;
+      // vm.errors = null;
 
-      if (form.$valid) {
-        Auth.login({
-            user_name: vm.user.user_name,
-            password: vm.user.password
-          })
+      // if (form.$valid) {
+        Auth.login(vm.user)
           .then(function () {
             $location.path('/');
           }, function (/*res*/) {
             // vm.errors = res.message;
           });
-      } 
+      // }
     };
 
     activate();

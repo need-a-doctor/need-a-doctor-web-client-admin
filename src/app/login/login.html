@@ -2,19 +2,19 @@
   <div class="login-box">
     <div class="login-box-inner_">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Хочу</b> К Врачу</a>
+        <a href="#"><b>Хочу</b> К Врачу</a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Добро пожаловать</p>
 
-        <form action="../../index2.html" method="post">
+        <form novalidate>
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Электронный адрес" ng-model="user.user_name">
+            <input type="email" class="form-control" placeholder="Электронный адрес" ng-model="vm.user.email">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Пароль"  ng-model="user.password">
+            <input type="password" class="form-control" placeholder="Пароль"  ng-model="vm.user.password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -27,7 +27,7 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
+              <button type="submit" ng-click="vm.login()" class="btn btn-primary btn-block btn-flat">Войти</button>
             </div>
             <!-- /.col -->
           </div>
