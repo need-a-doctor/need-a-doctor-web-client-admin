@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('wtdAdmin')
+    .module('nadWeb') 
     .config(routerConfig);
 
   /** @ngInject */

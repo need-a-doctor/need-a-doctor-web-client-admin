@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('wtdAdmin')
+    .module('nadWeb')
     .controller('MainController', MainController);
 
   /** @ngInject */
@@ -13,7 +13,14 @@
 
     activate();
 
+    function toggleSidebar(){
+          $('.sidebar-mini').toggleClass('sidebar-collapse');
+          }
+
     function activate() {
+      $('.sidebar-toggle').click(function () {
+        toggleSidebar();
+      })
     }
 
   }

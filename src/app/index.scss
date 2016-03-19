@@ -33,3 +33,26 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
  */
 // injector
 // endinjector
+
+.skin-blue .main-header .logo,
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #1976D2 !important;
+}
+
+.skin-blue .main-header .navbar {
+  background-color: #2196F3 !important;
+}
+
+body {
+  background-image: url(../assets/images/login-bg.png);
+  background-size: cover;
+}
+
+.login-box {
+
+}
+
+.login-box-inner {
+  width: 360px;
+  margin: 7% auto;
+}

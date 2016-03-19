@@ -1,1 +1,1 @@
-Web client administrators of clinics
+Web client for administrators of clinics

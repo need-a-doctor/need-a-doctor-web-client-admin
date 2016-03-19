@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('wtdAdmin')
+    .module('nadWeb')
     .run(runBlock);
 
   /** @ngInject */

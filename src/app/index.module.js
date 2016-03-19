@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('wtdAdmin', ['ngAnimate', 'restangular', 'ui.router', 'ui.bootstrap', 'toastr']);
+    .module('nadWeb', ['ngAnimate', 'restangular', 'ui.router', 'ui.bootstrap', 'toastr', 'ngCookies']);
 
 })();

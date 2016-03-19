@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('wtdAdmin')
+    .module('nadWeb')
     .directive('acmeNavbar', acmeNavbar);
 
   /** @ngInject */

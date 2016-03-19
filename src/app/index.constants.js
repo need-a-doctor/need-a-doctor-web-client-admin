@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('wtdAdmin')
+    .module('nadWeb')
     .constant('moment', moment);
 
 })();
