@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function runBlock($log, $rootScope) {
-    $rootScope.$on('$stateChangeStart',
+    $rootScope.$on('$stateChangeSuccess',
       function (event, toState) {
         if (toState.name == 'login') {
           $('body').addClass('login-body');
