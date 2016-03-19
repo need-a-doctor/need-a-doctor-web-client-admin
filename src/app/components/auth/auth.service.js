@@ -14,6 +14,9 @@ angular.module('nadWeb')
           })
           .then(function (data) {
             $cookieStore.put('token', data.token);
+            var headers = Restangular.defaultHeaders;
+            headers.Authorization = 'Bearer ' + data.token;
+            Restangular.setDefaultHeaders(headers);
             User.get().then(function (user) {
               currentUser = user;
               deferred.resolve(currentUser);
@@ -32,7 +35,11 @@ angular.module('nadWeb')
       logout: function () {
         $cookieStore.remove('token');
         currentUser = {};
-        $location.path('/login');
+        var headers = Restangular.defaultHeaders;
+        delete headers.Authorization;
+        Restangular.setDefaultHeaders(headers);
+        $rootScope.currentUserRole = window.localStorage.role;
+        $state.go('login');
       },
       //
       // getCurrentUser: function () {
@@ -40,7 +47,7 @@ angular.module('nadWeb')
       // },
       isLoggedIn: function () {
         return $cookieStore.get('token') !== undefined;
-      },
+      }
       //
       //
       // reloadUser: function () {
