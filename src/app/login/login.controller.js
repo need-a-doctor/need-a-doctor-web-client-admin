@@ -16,18 +16,22 @@
       // vm.errors = null;
 
       // if (form.$valid) {
-        Auth.login(vm.user)
-          .then(function () {
-            $location.path('/');
-          }, function (/*res*/) {
-            // vm.errors = res.message;
-          });
+      Auth.login(vm.user)
+        .then(function () {
+          $location.path('/');
+        }, function (/*res*/) {
+          // vm.errors = res.message;
+        });
       // }
     };
 
     activate();
 
     function activate() {
+      // (function ($) {
+        // $('body').css('backgroundImage', '../assets/images/login-bg.png');
+        // $('body').css('  backgroundSize', 'cover');
+      // }(jQuery));
     }
 
   }
