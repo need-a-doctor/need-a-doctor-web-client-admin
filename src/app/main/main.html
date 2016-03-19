@@ -8,7 +8,7 @@
     </a>
 
     <nav class="navbar navbar-static-top" role="navigation">
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" ng-click="toggleSidebar()">
+      <a href class="sidebar-toggle" data-toggle="offcanvas">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <div class="navbar-custom-menu">
@@ -23,35 +23,14 @@
                 <img ng-src="../../assets/images/{{user.avatar}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{user.name}}
+                  <small>{{user.email}}</small>
                 </p>
-              </li>
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a class="btn btn-default btn-flat">Sign out</a>
-                </div>
               </li>
             </ul>
           </li>
           <li>
-            <a href='#' id="qqqq" ng-click="vm.logout()"><i class="fa fa-sign-out"></i></a>
+            <a href ng-click="main.logout()"><i class="fa fa-sign-out"></i></a>
           </li>
         </ul>
       </div>

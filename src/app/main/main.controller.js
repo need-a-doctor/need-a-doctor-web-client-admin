@@ -11,22 +11,11 @@
 
     activate();
 
-    function toggleSidebar() {
-      $('.sidebar-mini').toggleClass('sidebar-collapse');
-    }
-
-    function logout() {
+    vm.logout = function () {
       Auth.logout();
     };
 
     function activate() {
-      $('#qqqq').click(function () {
-        logout();
-      });
-      $('.sidebar-toggle').click(function () {
-        toggleSidebar();
-      })
-
       $(window).resize();
     }
 

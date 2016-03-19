@@ -8,7 +8,7 @@ angular.module('nadWeb')
         Restangular.all('/users/me/').get('')
           .then(function (res) {
             var user = angular.copy(res);
-            if (config.env == 'test') {
+            if (user.avatar == undefined) {
               user.avatar = 'user-example.jpg';
             }
             $rootScope.user = user;
