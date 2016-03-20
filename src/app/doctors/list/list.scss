@@ -1,0 +1,48 @@
+.table-doctors thead {
+  width: 25%;
+}
+
+.table-doctors tbody {
+  width: 74%;
+}
+
+.table-doctors td {
+  min-width: 101px;
+}
+
+.table-doctors thead td:nth-child(1) {
+  //min-width: 120px;
+}
+
+.table-doctors thead td:nth-child(2) {
+  //min-width: 120px;
+}
+
+.table-doctors thead, .table-doctors tbody {
+  display: inline-block;
+}
+
+.table-doctors tbody {
+  //width: 100%;
+  overflow-x: scroll;
+}
+
+.table-doctors td.appointment {
+  background-color: rgba(0, 128, 0, 0.5);
+  cursor: pointer;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: 11.5px;
+  text-align: center;
+  border: 1px dashed black;
+}
+
+.table-doctors td.appointment.busy {
+  background-color: red;
+}
+
+.table-doctors td.appointment small{
+  font-size: 8px;
+  padding-top: 0;
+  padding-bottom: 0;
+}

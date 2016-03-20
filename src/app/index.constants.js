@@ -1,5 +1,5 @@
 /* global moment:false */
-(function() {
+(function () {
   'use strict';
 
   angular

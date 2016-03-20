@@ -1,0 +1,27 @@
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <table class="table  table-doctors">
+      <thead valign="top">
+      <!--<th>Ф.И.О.</th>-->
+      <!--<th>Специализация</th>-->
+      <tr ng-repeat="doc in vm.doctors" class="">
+        <td><a href="">{{doc.name}}</a></td>
+        <td>{{doc.spec}}</td>
+      </tr>
+      </thead>
+      <tbody valign="top">
+      <tr ng-repeat="doc in vm.doctors">
+        <td ng-repeat="a in doc.appointments" class=" appointment" ng-class="{busy: a.busy}"
+            ng-click="vm.addAppointment(a)">
+          <small>1 января</small>
+          <br>
+          <span>{{a.timeStr}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -3,20 +3,20 @@
 
   angular
     .module('nadWeb')
-    .controller('MainController', MainController);
+    .controller('HeaderController', HeaderController);
 
   /** @ngInject */
-  function MainController(Auth) {
-    var vm = this;
+  function HeaderController($scope, Auth) {
+    // var main = this;
 
     activate();
 
-    vm.logout = function () {
+    $scope.logout = function () {
       Auth.logout();
     };
 
     function activate() {
-      $(window).resize();
+
     }
 
   }

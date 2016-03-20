@@ -1,8 +1,8 @@
 <div class="wrapper">
 
-  <header class="main-header">
+  <header class="main-header" ng-controller="HeaderController">
 
-    <a href="#" class="logo">
+    <a href class="logo">
       <span class="logo-mini"><b>Х</b>очу</span>
       <span class="logo-lg"><b>Хочу</b> К Врачу</span>
     </a>
@@ -14,7 +14,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href class="dropdown-toggle" data-toggle="dropdown">
               <img ng-src="../../assets/images/{{user.avatar}}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{user.name}}</span>
             </a>
@@ -30,7 +30,7 @@
             </ul>
           </li>
           <li>
-            <a href ng-click="main.logout()"><i class="fa fa-sign-out"></i></a>
+            <a href ng-click="logout()"><i class="fa fa-sign-out"></i></a>
           </li>
         </ul>
       </div>
@@ -41,16 +41,16 @@
     <section class="sidebar">
       <div class="user-panel">
         <div class="pull-left image">
-          <img ng-src="../../assets/images/{{user.avatar}}" class="img-circle" alt="User Image">
+          <img src="../../assets/images/facility.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{user.name}}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p>ОДКБ ЁКЛМН №666</p>
+          <a href><i class="fa fa-circle text-success"></i> ул. Розалии Землячки, д. 6</a>
         </div>
       </div>
       <ul class="sidebar-menu">
         <li>
-          <a href="pages/widgets.html">
+          <a href="/#/doctors/">
             <i class="fa fa-user"></i> <span>Список докторов</span>
           </a>
         </li>
@@ -59,18 +59,15 @@
   </aside>
 
   <div class="content-wrapper">
+    <ui-view></ui-view>
   </div>
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 0.0.1
     </div>
-    <strong>Авторские права &copy; 2016 <a href="#">Хочу К Врачу</a>.</strong> Все права защищены.
+    <strong>Авторские права &copy; 2016 <a href>Хочу К Врачу</a>.</strong> Все права защищены.
   </footer>
 
 </div>
-</div>
-</aside>
-<div class="control-sidebar-bg"></div>
 
-</div>
