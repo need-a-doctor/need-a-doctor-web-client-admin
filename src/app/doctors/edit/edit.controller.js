@@ -18,7 +18,7 @@
     function save() {
       Restangular.all('/specializations/').post(vm.doc).then(function (data) {
         goList();
-      }, function (err) {
+      }, function () {
         goList();//TODO
       });
     }

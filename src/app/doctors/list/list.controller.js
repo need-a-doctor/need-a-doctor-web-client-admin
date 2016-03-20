@@ -6,9 +6,10 @@
     .controller('DoctorsListController', DoctorsListController);
 
   /** @ngInject */
-  function DoctorsListController(Restangular, $rootScope, ngDialog, $scope) {
+  function DoctorsListController(Restangular, $rootScope, ngDialog, $scope, $state) {
     var vm = this;
     vm.editRec = editRec;
+    vm.goAdd = goAdd;
 
     activate();
 
@@ -29,12 +30,13 @@
         controller: function ($scope, $rootScope) {
 
           $scope.save = function () {
-            t = new Date(0, 0, 0, t[0] + '' + t[1], t[3] + '' + t[4], 0, 0);
+            d = new Date($scope.rec.date.getFullYear(), $scope.rec.date.getMonth(), $scope.rec.date.getDate(),
+              $scope.rec.time[0] + '' + $scope.rec.time[1], $scope.rec.time[3] + '' + $scope.rec.time[4], 0, 0);
             Restangular.all('/users/me/receptions/').post({
               doctor: doc._id,
               user: $rootScope.user._id,
-              date: d,
-              time: t
+              date: d.toISOString(),
+              time: d.toISOString()
             }).then(function () {
               closeThisDialog(0);
             }, function (err) {
@@ -63,30 +65,28 @@
     }
 
     function loadDoctors() {
-      Restangular.all('/doctors/by-clinic/56ed28562ff662e835f65661' /*+ $rootScope.clinic._id*/).get('')//TODO
+      Restangular.all('/doctors/grouped-by-date/').get('')//TODO
         .then(function (res) {
           if (res.length) {
-            vm.doctors = res;
-          } else {
-            seed();
+            vm.doctors = res[0].doctors;
           }
           prettyTime();
         }, function () {
-          seed();
+          alert('error');
         });
     }
 
     function prettyTime() {
       angular.forEach(vm.doctors, function (doc) {
-        doc.appointments = [];
-        angular.forEach([1, 2, 3, 4, 5, 6, 7], function (a) {//TODO
-          var a = {};
-          a.time = new Date();
-          a.timeStr = timeToStr(a.time) + ' - ' + timeToStr(new Date(a.time.getTime() + 20 * 60 * 1000));
-          a.busy = a.time % 2 == 0;
-          doc.appointments.push(a);
+        angular.forEach(doc.receptions, function (r) {
+          r.time = new Date(r.time);
+          r.timeStr = timeToStr(r.time);
         });
       });
+    }
+
+    function goAdd() {
+      $state.go('doctors.add');
     }
 
     function activate() {

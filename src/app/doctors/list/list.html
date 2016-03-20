@@ -40,28 +40,37 @@
   </div>
 </script>
 
-<br>
-<br>
-<br>
-<div class="row">
-  <div class="col-sm-offset-1 col-sm-10">
-    <table class="table table-doctors">
-      <thead valign="top">
-      <tr ng-repeat="doc in vm.doctors" class="">
-        <td><a href="#/doctors/edit/{{doc._id}}">{{doc.name}}</a></td>
-        <td>{{doc.specializations[0].name}}</td>
-      </tr>
-      </thead>
-      <tbody valign="top">
-      <tr ng-repeat="doc in vm.doctors">
-        <td ng-repeat="a in doc.appointments" class=" appointment" ng-class="{busy: a.busy}"
-            ng-click="vm.editRec(doc, a)">
-          <small>1 января</small>
-          <br>
-          <span>{{a.timeStr}}</span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+<div class="col-xs-12">
+  <div class="box">
+
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-hover">
+        <tbody>
+        <tr>
+          <th>ФИО</th>
+          <th>Специальность</th>
+          <th>Приёмы</th>
+
+        </tr>
+        <tr ng-repeat="doc in vm.doctors">
+          <td style="vertical-align: middle;">{{doc.name}}
+          </td>
+          <td style="vertical-align: middle;">{{doc.specializations[0].name}}
+          </td>
+          <td><span style="margin-right: 10px;">21 марта:</span>
+            <button type="button" ng-repeat="r in doc.receptions" class="btn btn-recipient"
+                    ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
+              {{r.timeStr}}
+            </button>
+            <button type="button" class="btn btn-info">Другие даты</button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
   </div>
+</div>
+<div class="row col-xs-12" style="margin-bottom: 25px;">
+  <button class="btn btn-primary pull-right" ng-click="vm.goAdd()">Добавить доктора</button>
 </div>
