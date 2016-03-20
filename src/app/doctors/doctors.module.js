@@ -23,6 +23,18 @@
         templateUrl: 'app/doctors/list/list.html',
         controller: 'DoctorsListController',
         controllerAs: 'vm'
+      })
+      .state('doctors.add', {
+        url: '/add',
+        templateUrl: 'app/doctors/edit/edit.html',
+        controller: 'DoctorsAddController',
+        controllerAs: 'vm'
+      })
+      .state('doctors.edit', {
+        url: '/edit/:id',
+        templateUrl: 'app/doctors/edit/edit.html',
+        controller: 'DoctorsEditController',
+        controllerAs: 'vm'
       });
   }
 

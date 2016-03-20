@@ -50,50 +50,6 @@
       });
     }
 
-    function seed() {
-      vm.doctors = [];
-      vm.doctors.push({
-        _id: '56ed7437ac337758274f7661',
-        name: 'Иванов И.И.',
-        spec: 'Терапевт',
-        appointments: [
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false}
-        ]
-      }, {
-        _id: '56ed7437ac337758274f7661',
-        name: 'Петров П.П.',
-        spec: 'Хирург',
-        appointments: [
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: true}
-        ]
-      }, {
-        _id: '56ed7437ac337758274f7661',
-        name: 'Сидоров С.С.',
-        spec: 'Стоматолог',
-        appointments: [
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: true},
-          {time: new Date(), busy: false},
-          {time: new Date(), busy: true}
-        ]
-      });
-    }
-
     function timeToStr(time) {
       return moment.utc(time.getTime()).format("HH:mm");
     }
@@ -107,7 +63,7 @@
     }
 
     function loadDoctors() {
-      Restangular.all('/doctors/by-clinic/' + $rootScope.clinic._id).get('')
+      Restangular.all('/doctors/by-clinic/56ed28562ff662e835f65661' /*+ $rootScope.clinic._id*/).get('')//TODO
         .then(function (res) {
           if (res.length) {
             vm.doctors = res;
@@ -122,8 +78,13 @@
 
     function prettyTime() {
       angular.forEach(vm.doctors, function (doc) {
-        angular.forEach(doc.appointments, function (a) {
+        doc.appointments = [];
+        angular.forEach([1, 2, 3, 4, 5, 6, 7], function (a) {//TODO
+          var a = {};
+          a.time = new Date();
           a.timeStr = timeToStr(a.time) + ' - ' + timeToStr(new Date(a.time.getTime() + 20 * 60 * 1000));
+          a.busy = a.time % 2 == 0;
+          doc.appointments.push(a);
         });
       });
     }
