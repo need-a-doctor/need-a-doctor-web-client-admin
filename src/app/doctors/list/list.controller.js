@@ -65,12 +65,16 @@
         });
     }
 
+    function dateToStr(date) {
+      return moment.utc(new Date(date).getTime()).format("DD.MM.YY");
+    }
+
     function loadDoctors() {
       Restangular.all('/doctors/grouped-by-date/').get('')//TODO
         .then(function (res) {
           if (res.length) {
             vm.doctors = res[0].doctors;
-            vm.dateStr = moment.utc(new Date(res[0].date).getTime()).format("DD.MM.YY");
+            vm.dateStr = dateToStr(res[0].date);
           }
           prettyTime();
         }, function () {

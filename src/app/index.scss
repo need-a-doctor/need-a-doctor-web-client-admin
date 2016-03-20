@@ -35,10 +35,23 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // endinjector
 
 .skin-blue .main-header .logo,
-.skin-blue .main-header .navbar .sidebar-toggle:hover {
+.skin-blue .main-header .navbar .sidebar-toggle:hover, .skin-blue .main-header li.user-header {
   background-color: #1976D2 !important;
 }
 
 .skin-blue .main-header .navbar {
   background-color: #2196F3 !important;
+}
+
+.skin-blue .main-header .navbar a.sidebar-toggle {
+  text-decoration: none;
+}
+
+.logo-lg img {
+  vertical-align: inherit;
+  margin-top: 9px;
+}
+
+.show-container .table th, .show-container .table td {
+  //text-align: center;
 }

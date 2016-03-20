@@ -1,27 +1,40 @@
-<h2>{{vm.dods[0].doctor.name}}</h2>
-<h4>{{vm.dods[0].doctor.specializations[0].name}}</h4>
+<div class="show-container">
 
-<div class="col-sm-offset-2 col-sm-8">
-  <div class="box">
+<div class="content-header">
+  <h1>{{vm.dods[0].doctor.name}}
+    <small>{{vm.dods[0].doctor.specializations[0].name}}</small>
+  </h1>
 
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody>
+</div>
 
-        <tr ng-repeat="dod in vm.dods">
-          <td>{{dod.dateStr}}</td>
-          <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
-            <button type="button" ng-repeat="r in dod.doctor.receptions" class="btn btn-recipient"
-                    ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
-              {{r.timeStr}}
-            </button>
-          </td>
-        </tr>
+<div class="content">
+  <div class="row">
+    <div class="col-sm-offset_ col-sm-12">
+      <div class="box">
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>Дата</th>
+              <th>Приёмы</th>
+            </tr>
+            <tr ng-repeat="dod in vm.dods">
+              <td>{{dod.dateStr}}</td>
+              <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
+                <button type="button" ng-repeat="r in dod.doctor.receptions" class="btn btn-recipient"
+                        ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
+                  {{r.timeStr}}
+                </button>
+              </td>
+            </tr>
 
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="clearfix"></div>
+</div>

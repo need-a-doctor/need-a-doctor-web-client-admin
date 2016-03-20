@@ -14,7 +14,7 @@
     function prettyTime() {
       angular.forEach(vm.dods, function (dod) {
         dod.date = new Date(dod.date);
-        dod.dateStr = timeToStr(dod.date);
+        dod.dateStr = dateToStr(dod.date);
         angular.forEach(dod.doctor.receptions, function (r) {
           r.time = new Date(r.time);
           r.timeStr = timeToStr(r.time);
@@ -33,6 +33,10 @@
           alert('error');
         });
     }
+  }
+
+  function dateToStr(date) {
+    return moment.utc(new Date(date).getTime()).format("DD.MM.YY");
   }
 
   function timeToStr(time) {

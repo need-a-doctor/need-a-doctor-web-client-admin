@@ -1,4 +1,58 @@
 <script type="text/ng-template" id="templateId">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Запись на приём</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        <div class="col-md-4">
+
+          <!-- /.form-group -->
+          <div class="form-group">
+            <label>Disabled</label>
+            <select class="form-control select2 select2-hidden-accessible" disabled="" style="width: 100%;" tabindex="-1" aria-hidden="true">
+              <option selected="selected">Alabama</option>
+              <option>Alaska</option>
+              <option>California</option>
+              <option>Delaware</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Washington</option>
+            </select><span class="select2 select2-container select2-container--default select2-container--disabled" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-k2d0-container"><span class="select2-selection__rendered" id="select2-k2d0-container" title="Alabama">Alabama</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+          </div>
+          <!-- /.form-group -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>Disabled Result</label>
+            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+              <option selected="selected">Alabama</option>
+              <option>Alaska</option>
+              <option disabled="disabled">California (disabled)</option>
+              <option>Delaware</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Washington</option>
+            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-iucx-container"><span class="select2-selection__rendered" id="select2-iucx-container" title="Alabama">Alabama</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+          </div>
+          <!-- /.form-group -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+      the plugin.
+    </div>
+  </div>
   <h1>Запись на приём</h1>
   <!--фио-->
   <!--телефон-->
@@ -40,37 +94,46 @@
   </div>
 </script>
 
-<div class="col-xs-12">
-  <div class="box">
+<div class="content-header">
+  <h1>Список врачей</h1>
+</div>
 
-    <div class="box-body table-responsive no-padding">
-      <table class="table table-hover">
-        <tbody>
-        <tr>
-          <th>ФИО</th>
-          <th>Специальность</th>
-          <th>Приёмы</th>
+<div class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
 
-        </tr>
-        <tr ng-repeat="doc in vm.doctors">
-          <td style="vertical-align: middle;">{{doc.name}}
-          </td>
-          <td style="vertical-align: middle;">{{doc.specializations[0].name}}
-          </td>
-          <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
-            <button type="button" ng-repeat="r in doc.receptions" class="btn btn-recipient"
-                    ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
-              {{r.timeStr}}
-            </button>
-            <button type="button" class="btn btn-info" ng-click="vm.goToShow(doc._id)">Другие даты</button>
-          </td>
-        </tr>
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tbody>
+            <tr>
+              <th>ФИО</th>
+              <th>Специальность</th>
+              <th>Приёмы</th>
 
-        </tbody>
-      </table>
+            </tr>
+            <tr ng-repeat="doc in vm.doctors">
+              <td style="vertical-align: middle;">{{doc.name}}
+              </td>
+              <td style="vertical-align: middle;">{{doc.specializations[0].name}}
+              </td>
+              <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
+                <button type="button" ng-repeat="r in doc.receptions" class="btn btn-recipient"
+                        ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
+                  {{r.timeStr}}
+                </button>
+                <button type="button" class="btn btn-info" ng-click="vm.goToShow(doc._id)">Другие даты</button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="row col-xs-12" style="margin-bottom: 25px;">
-  <button class="btn btn-primary pull-right" ng-click="vm.goAdd()">Добавить доктора</button>
-</div>
+  <div class="row" style="margin-bottom: 25px;">
+    <div class="col-xs-12">
+      <button class="btn btn-primary pull-right" ng-click="vm.goAdd()">Добавить доктора</button>
+    </div>
+  </div>
