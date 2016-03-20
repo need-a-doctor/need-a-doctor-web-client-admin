@@ -35,6 +35,12 @@
         templateUrl: 'app/doctors/edit/edit.html',
         controller: 'DoctorsEditController',
         controllerAs: 'vm'
+      })
+      .state('doctors.show', {
+        url: '/show/:id',
+        templateUrl: 'app/doctors/show/show.html',
+        controller: 'DoctorsShowController',
+        controllerAs: 'vm'
       });
   }
 

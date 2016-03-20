@@ -57,12 +57,12 @@
           </td>
           <td style="vertical-align: middle;">{{doc.specializations[0].name}}
           </td>
-          <td><span style="margin-right: 10px;">21 марта:</span>
+          <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
             <button type="button" ng-repeat="r in doc.receptions" class="btn btn-recipient"
                     ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
               {{r.timeStr}}
             </button>
-            <button type="button" class="btn btn-info">Другие даты</button>
+            <button type="button" class="btn btn-info" ng-click="vm.goToShow(doc._id)">Другие даты</button>
           </td>
         </tr>
 

@@ -10,6 +10,7 @@
     var vm = this;
     vm.editRec = editRec;
     vm.goAdd = goAdd;
+    vm.goToShow = goToShow;
 
     activate();
 
@@ -69,6 +70,7 @@
         .then(function (res) {
           if (res.length) {
             vm.doctors = res[0].doctors;
+            vm.dateStr = moment.utc(new Date(res[0].date).getTime()).format("DD.MM.YY");
           }
           prettyTime();
         }, function () {
@@ -87,6 +89,10 @@
 
     function goAdd() {
       $state.go('doctors.add');
+    }
+
+    function goToShow(docId) {
+      $state.go('doctors.show', {id: docId});
     }
 
     function activate() {

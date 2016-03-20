@@ -1,0 +1,27 @@
+<h2>{{vm.dods[0].doctor.name}}</h2>
+<h4>{{vm.dods[0].doctor.specializations[0].name}}</h4>
+
+<div class="col-sm-offset-2 col-sm-8">
+  <div class="box">
+
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-hover">
+        <tbody>
+
+        <tr ng-repeat="dod in vm.dods">
+          <td>{{dod.dateStr}}</td>
+          <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
+            <button type="button" ng-repeat="r in dod.doctor.receptions" class="btn btn-recipient"
+                    ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
+              {{r.timeStr}}
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
