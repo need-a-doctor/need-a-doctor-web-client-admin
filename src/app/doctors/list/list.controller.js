@@ -6,19 +6,54 @@
     .controller('DoctorsListController', DoctorsListController);
 
   /** @ngInject */
-  function DoctorsListController(Restangular, $rootScope) {
+  function DoctorsListController(Restangular, $rootScope, ngDialog, $scope) {
     var vm = this;
-    vm.addAppointment = addAppointment;
+    vm.editRec = editRec;
 
     activate();
 
-    function addAppointment(a) {
-      alert(a.timeStr);
+    function editRec(doc, a) {
+      function n(i) {
+        return i < 10 ? '0' + i : i;
+      }
+
+      $scope.user = {name: '', phone: '', _id: $rootScope.user._id};
+      var d = angular.copy(a.time);
+      d.setHours(0, 0, 0, 0, 0);
+      var t = n(a.time.getHours()) + ':' + n(a.time.getMinutes());
+      $scope.rec = {doctor: doc._id, time: t, date: d, user: $scope.user._id};
+
+      ngDialog.open({
+        template: 'templateId',
+        className: 'ngdialog-theme-default',
+        controller: function ($scope, $rootScope) {
+
+          $scope.save = function () {
+            t = new Date(0, 0, 0, t[0] + '' + t[1], t[3] + '' + t[4], 0, 0);
+            Restangular.all('/users/me/receptions/').post({
+              doctor: doc._id,
+              user: $rootScope.user._id,
+              date: d,
+              time: t
+            }).then(function () {
+              closeThisDialog(0);
+            }, function (err) {
+              alert('error ' + JSON.stringify(err));
+            });
+          };
+
+          $scope.delete = function () {
+            Restangular.all('/users/me/receptions/').delete(1);
+          };
+        },
+        scope: $scope
+      });
     }
 
     function seed() {
       vm.doctors = [];
       vm.doctors.push({
+        _id: '56ed7437ac337758274f7661',
         name: 'Иванов И.И.',
         spec: 'Терапевт',
         appointments: [
@@ -31,6 +66,7 @@
           {time: new Date(), busy: false}
         ]
       }, {
+        _id: '56ed7437ac337758274f7661',
         name: 'Петров П.П.',
         spec: 'Хирург',
         appointments: [
@@ -44,6 +80,7 @@
           {time: new Date(), busy: true}
         ]
       }, {
+        _id: '56ed7437ac337758274f7661',
         name: 'Сидоров С.С.',
         spec: 'Стоматолог',
         appointments: [
