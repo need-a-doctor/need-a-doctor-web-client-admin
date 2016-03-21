@@ -1,3 +1,5 @@
+<div ng-include="'app/doctors/editrecipient/editrecipient.html'"></div>
+
 <div class="show-container">
 
 <div class="content-header">
@@ -22,7 +24,7 @@
               <td>{{dod.dateStr}}</td>
               <td><span style="margin-right: 10px;">{{vm.dateStr}}</span>
                 <button type="button" ng-repeat="r in dod.doctor.receptions" class="btn btn-recipient"
-                        ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(doc, r)">
+                        ng-class="{'btn-danger': r.isBusy, 'btn-success': !r.isBusy}" ng-click="vm.editRec(dod.doctor, r)">
                   {{r.timeStr}}
                 </button>
               </td>

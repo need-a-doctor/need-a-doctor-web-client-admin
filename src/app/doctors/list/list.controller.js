@@ -39,7 +39,7 @@
               date: d.toISOString(),
               time: d.toISOString()
             }).then(function () {
-              closeThisDialog(0);
+              $scope.closeThisDialog(0);
             }, function (err) {
               alert('error ' + JSON.stringify(err));
             });
@@ -70,7 +70,7 @@
     }
 
     function loadDoctors() {
-      Restangular.all('/doctors/grouped-by-date/').get('')//TODO
+      Restangular.all('/doctors/grouped-by-date/').get('')
         .then(function (res) {
           if (res.length) {
             vm.doctors = res[0].doctors;

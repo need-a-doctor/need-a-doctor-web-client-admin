@@ -27,7 +27,7 @@
     }
     // Read config file END
 
-    RestangularProvider.setBaseUrl('http://50.112.191.195:9000/api/');
+    RestangularProvider.setBaseUrl('http://52.38.21.188:9000/api/');
 
     $httpProvider.interceptors.push('myHttpInterceptor');
 
