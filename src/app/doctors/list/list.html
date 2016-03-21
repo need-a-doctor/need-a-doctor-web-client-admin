@@ -19,7 +19,7 @@
 
             </tr>
             <tr ng-repeat="doc in vm.doctors">
-              <td style="vertical-align: middle;">{{doc.name}}
+              <td style="vertical-align: middle;" ><a href="#/doctors/edit/{{doc._id}}">{{doc.name}}</a>
               </td>
               <td style="vertical-align: middle;">{{doc.specializations[0].name}}
               </td>

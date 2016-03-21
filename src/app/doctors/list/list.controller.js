@@ -25,39 +25,41 @@
       var t = n(a.time.getHours()) + ':' + n(a.time.getMinutes());
       $scope.rec = {doctor: doc._id, time: t, date: d, user: $scope.user._id};
 
-      ngDialog.open({
-        template: 'templateId',
-        className: 'ngdialog-theme-default',
-        controller: function ($scope, $rootScope) {
+      controller.$inject = ['$scope'];
+      function controller($scope) {
 
-          $scope.save = function () {
-            Restangular.all('/users/').post({
-              name: $scope.user.name,
-              email: 'fake' + new Date().getTime() + '@mail.ru',
-              password: 'password'
+        $scope.save = function () {
+          Restangular.all('/users/').post({
+            name: $scope.user.name,
+            email: 'fake' + new Date().getTime() + '@mail.ru',
+            password: 'password'
+          }).then(function () {
+            d = new Date($scope.rec.date.getFullYear(), $scope.rec.date.getMonth(), $scope.rec.date.getDate(),
+              $scope.rec.time[0] + '' + $scope.rec.time[1], $scope.rec.time[3] + '' + $scope.rec.time[4], 0, 0);
+            Restangular.all('/users/me/receptions/').post({
+              doctor: doc._id,
+              user: $scope.user._id,
+              date: d.toISOString(),
+              time: d.toISOString()
             }).then(function () {
-              d = new Date($scope.rec.date.getFullYear(), $scope.rec.date.getMonth(), $scope.rec.date.getDate(),
-                $scope.rec.time[0] + '' + $scope.rec.time[1], $scope.rec.time[3] + '' + $scope.rec.time[4], 0, 0);
-              Restangular.all('/users/me/receptions/').post({
-                doctor: doc._id,
-                user: $scope.user._id,
-                date: d.toISOString(),
-                time: d.toISOString()
-              }).then(function () {
-                a.isBusy = true;
-                $scope.closeThisDialog(0);
-              }, function (err) {
-                alert('error ' + JSON.stringify(err));
-              });
+              a.isBusy = true;
+              $scope.closeThisDialog(0);
             }, function (err) {
               alert('error ' + JSON.stringify(err));
             });
-          };
+          }, function (err) {
+            alert('error ' + JSON.stringify(err));
+                });
+            };
 
-          $scope.delete = function () {
-            Restangular.all('/users/me/receptions/').delete(1);
-          };
-        },
+            $scope.delete = function () {
+                Restangular.all('/users/me/receptions/').delete(1);
+            };
+        };
+        ngDialog.open({
+        template: 'templateId',
+        className: 'ngdialog-theme-default',
+        controller: controller,
         scope: $scope
       });
     }

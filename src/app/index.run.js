@@ -27,6 +27,10 @@
     headers.Authorization = 'Bearer ' + $cookieStore.get('token');
     Restangular.setDefaultHeaders(headers);
 
+    Restangular.all('/users/me/clinic').get('')
+      .then(function (res) {
+        $rootScope.clinic = res;
+      });
 
     $log.debug('runBlock end');
   }
