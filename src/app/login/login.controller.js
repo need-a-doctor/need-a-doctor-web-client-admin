@@ -29,7 +29,7 @@
 
     function activate() {
       if (config.env == 'test') {
-        vm.user = {email: 'test.admin@mail.ru', password: 'password'};
+        vm.user = {email: 'q@q.qq', password: 'Danger12'};
       }
     }
 

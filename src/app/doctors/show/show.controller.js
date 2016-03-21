@@ -34,7 +34,6 @@
           alert('error');
         });
     }
-
     function editRec(doc, a) {
       function n(i) {
         return i < 10 ? '0' + i : i;
@@ -52,15 +51,24 @@
         controller: function ($scope, $rootScope) {
 
           $scope.save = function () {
-            d = new Date($scope.rec.date.getFullYear(), $scope.rec.date.getMonth(), $scope.rec.date.getDate(),
-              $scope.rec.time[0] + '' + $scope.rec.time[1], $scope.rec.time[3] + '' + $scope.rec.time[4], 0, 0);
-            Restangular.all('/users/me/receptions/').post({
-              doctor: doc._id,
-              user: $rootScope.user._id,
-              date: d.toISOString(),
-              time: d.toISOString()
+            Restangular.all('/users/').post({
+              name: $scope.user.name,
+              email: 'fake' + new Date().getTime() + '@mail.ru',
+              password: 'password'
             }).then(function () {
-              $scope.closeThisDialog(0);
+              d = new Date($scope.rec.date.getFullYear(), $scope.rec.date.getMonth(), $scope.rec.date.getDate(),
+                $scope.rec.time[0] + '' + $scope.rec.time[1], $scope.rec.time[3] + '' + $scope.rec.time[4], 0, 0);
+              Restangular.all('/users/me/receptions/').post({
+                doctor: doc._id,
+                user: $scope.user._id,
+                date: d.toISOString(),
+                time: d.toISOString()
+              }).then(function () {
+                a.isBusy = true;
+                $scope.closeThisDialog(0);
+              }, function (err) {
+                alert('error ' + JSON.stringify(err));
+              });
             }, function (err) {
               alert('error ' + JSON.stringify(err));
             });
