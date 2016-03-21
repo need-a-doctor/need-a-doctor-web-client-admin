@@ -16,7 +16,7 @@
     activate();
 
     function save() {
-      Restangular.all('/specializations/').post(vm.doc).then(function (data) {
+      Restangular.all('/users/me/clinic/doctors/'+vm.doc._id).customPUT(vm.doc).then(function () {
         goList();
       }, function () {
         goList();//TODO

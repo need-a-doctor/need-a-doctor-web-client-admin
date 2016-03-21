@@ -9,14 +9,14 @@
   function DoctorsAddController(Restangular, $state) {
     var vm = this;
     vm.specs = null;
-    vm.doc = {spec: null};
+    vm.doc = {name: '', spec: ''};
     vm.save = save;
     vm.goList = goList;
 
     activate();
 
     function save() {
-      Restangular.all('/specializations/').post(vm.doc).then(function () {
+      Restangular.all('/users/me/clinic/doctors/').customPOST({name: vm.doc.name}).then(function () {
         goList();
       }, function () {
         goList();//TODO
